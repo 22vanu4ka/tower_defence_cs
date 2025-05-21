@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "xL/yj0N1qtk=",
+  "success": true,
+  "projectFilePath": "/home/alexb-pc/RiderProjects/HelloWorld/HelloWorld/HelloWorld.csproj",
+  "expectedPackageFiles": [
+    "/home/alexb-pc/.nuget/packages/raylib-cs/7.0.1/raylib-cs.7.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
