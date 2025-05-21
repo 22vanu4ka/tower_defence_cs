@@ -19,7 +19,7 @@ public class Blank
 
     public void Update(double delta)
     {
-        if (Raylib.IsMouseButtonDown(MouseButton.Left) && GameState.money >= price)
+        if (Raylib.IsMouseButtonDown(MouseButton.Left) && GameState.money >= price && Utils.Distance(position, Raylib.GetMousePosition()) < radius)
         {
             Turret newTurret = new Turret(position);
             GameState.turrets.Add(newTurret);

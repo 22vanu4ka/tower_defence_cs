@@ -11,6 +11,8 @@ public class Turret
     private double[] timer = new double[2] {0.3, 0.3};
     private Enemy target = null;
     private float radius = 100.0f;
+
+    private int redAspect = 0;
     //private List<Bullet> bullets = new List<Bullet>();
     //private List<Enemy> currEnemy;
 
@@ -51,13 +53,17 @@ public class Turret
 
     public void Draw()
     {
-        Raylib.DrawCircle((int)position.X, (int)position.Y, 10, Color.DarkBlue);
+        Raylib.DrawCircle((int)position.X, (int)position.Y, 10, new Color(redAspect, 0, 255-redAspect, 255));
         Raylib.DrawCircleLines((int)position.X, (int)position.Y, radius, Color.Green);
 
         if (target != null)
         {
             Raylib.DrawLine((int)position.X, (int)position.Y, (int)target.position.X, (int)target.position.Y, Color.Red);
-            Raylib.DrawCircle((int)position.X, (int)position.Y, 10, Color.Red);
+            redAspect = Math.Min(255, redAspect + 10);
+        }
+        else
+        {
+            redAspect = Math.Max(0, redAspect - 10);
         }
         
     }

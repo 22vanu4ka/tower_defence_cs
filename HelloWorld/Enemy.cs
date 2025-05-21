@@ -7,7 +7,7 @@ namespace HelloWorld;
 public class Enemy
 {
     public Vector2 position;
-    public int hp = 10;
+    public int hp = 9;
     public int reward = 20;
     
     private float speed = 2;
