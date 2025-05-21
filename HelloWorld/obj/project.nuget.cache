@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+/YIdtBrMmM=",
+  "dgSpecHash": "nBQqSEW7t9s=",
   "success": true,
-  "projectFilePath": "C:\\Users\\test\\RiderProjects\\tower_defence_cs\\HelloWorld\\HelloWorld.csproj",
+  "projectFilePath": "/home/sasha/RiderProjects/tower_defence_cs/HelloWorld/HelloWorld.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\test\\.nuget\\packages\\raylib-cs\\7.0.1\\raylib-cs.7.0.1.nupkg.sha512"
+    "/home/sasha/.nuget/packages/raylib-cs/7.0.1/raylib-cs.7.0.1.nupkg.sha512"
   ],
   "logs": []
 }

@@ -67,24 +67,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\test\\.nuget\\packages\\": {}
+    "/home/sasha/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\test\\RiderProjects\\tower_defence_cs\\HelloWorld\\HelloWorld.csproj",
+      "projectUniqueName": "/home/sasha/RiderProjects/tower_defence_cs/HelloWorld/HelloWorld.csproj",
       "projectName": "HelloWorld",
-      "projectPath": "C:\\Users\\test\\RiderProjects\\tower_defence_cs\\HelloWorld\\HelloWorld.csproj",
-      "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\test\\RiderProjects\\tower_defence_cs\\HelloWorld\\obj\\",
+      "projectPath": "/home/sasha/RiderProjects/tower_defence_cs/HelloWorld/HelloWorld.csproj",
+      "packagesPath": "/home/sasha/.nuget/packages/",
+      "outputPath": "/home/sasha/RiderProjects/tower_defence_cs/HelloWorld/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/sasha/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "/usr/lib/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -103,7 +104,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net9.0": {
@@ -130,7 +131,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.106/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -69,6 +69,8 @@ class Program
                 e.Update((float)1 / 60);
                 if (e.hp <= 0)
                 {
+                    Enemy.Info newinfo = new Enemy.Info(e.position);
+                    GameState.etc.Add(newinfo);
                     GameState.foes.Remove(e);
                     GameState.money += e.reward + e.currentIdx;
                     break;
@@ -110,6 +112,11 @@ class Program
             foreach (Blank b in GameState.blanks)
             {
                 b.Draw();
+            }
+
+            foreach (Enemy.Info e in GameState.etc)
+            {
+                e.Draw();
             }
             
             Raylib.EndDrawing();

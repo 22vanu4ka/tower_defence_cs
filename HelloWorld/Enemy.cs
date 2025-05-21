@@ -1,4 +1,5 @@
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using HelloWorld;
 using Raylib_cs;
 
@@ -46,5 +47,25 @@ public class Enemy
     {
         Raylib.DrawCircle((int)position.X, (int)position.Y, 14, Color.Beige);
         Raylib.DrawText($"{hp}", (int)position.X - 10, (int)position.Y - 10, 15, Color.Black);
+    }
+
+    public class Info
+    {
+        private Vector2 position;
+        private int alpha = 255;
+
+        public Info(Vector2 position)
+        {
+            this.position = position;
+        }
+
+        public void Draw()
+        {
+            position.Y -= 2;
+            alpha = Math.Max(0, alpha - 10);
+            
+            Raylib.DrawText("+20$", (int)position.X, (int)position.Y, 12, new Color(0, 0, 0, alpha));
+        }
+
     }
 }
