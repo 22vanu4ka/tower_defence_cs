@@ -66,3 +66,4 @@ C:/Users/test/RiderProjects/tower_defence_cs/HelloWorld/obj/Debug/net9.0/ref/Hel
 /home/sasha/RiderProjects/tower_defence_cs/HelloWorld/obj/Debug/net9.0/HelloWorld.pdb
 /home/sasha/RiderProjects/tower_defence_cs/HelloWorld/obj/Debug/net9.0/HelloWorld.genruntimeconfig.cache
 /home/sasha/RiderProjects/tower_defence_cs/HelloWorld/obj/Debug/net9.0/ref/HelloWorld.dll
+/home/alexb-pc/RiderProjects/HelloWorld/HelloWorld/obj/Debug/net9.0/HelloWorld.sourcelink.json

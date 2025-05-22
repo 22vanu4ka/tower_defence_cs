@@ -7,6 +7,6 @@ public class GameState
     public static List<Turret> turrets = new List<Turret>();
     public static List<Blank> blanks = new List<Blank>();
     public static List<Enemy.Info> etc = new List<Enemy.Info>();
-    public static int money = 200;
+    public static int money = 100;
     public static int passiveMoney = 2;
 }

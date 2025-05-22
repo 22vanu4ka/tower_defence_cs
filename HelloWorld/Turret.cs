@@ -7,21 +7,27 @@ namespace HelloWorld;
 
 public class Turret
 {
-    private Vector2 position;
-    private double[] timer = new double[2] {0.3, 0.3};
-    private Enemy target = null;
-    private float radius = 100.0f;
-
-    private int redAspect = 0;
-    //private List<Bullet> bullets = new List<Bullet>();
-    //private List<Enemy> currEnemy;
+    public virtual string name => "Turret";
+    public virtual int price => 75;
+    public virtual float radius => 100.0f;
+    public virtual bool bulletVsibility => true;
+    public virtual bool bulletPiercing => false;
+    public virtual int damage => 2;
+    
+    protected Vector2 position;
+    public bool alive = true;
+    protected double[] timer = new double[2] {0.3, 0.3};
+    protected Enemy target = null;
+    
+    protected int redAspect = 0;
+    
 
     public Turret(Vector2 position)
     {
         this.position = position;
     }
 
-    public void Update(double delta)
+    public virtual void Update(double delta)
     {
         timer[0] -= delta;
         
@@ -46,12 +52,24 @@ public class Turret
         {
             Vector2 tVector = Utils.DirectionTo(position, target.position);
             Bullet newBullet = new Bullet(position, tVector);
+            newBullet.visible = bulletVsibility;
+            newBullet.pierce = bulletPiercing;
+            newBullet.damage = damage;
             GameState.bullets.Add(newBullet);
             timer[0] = timer[1];
         }
+
+        if (Raylib.IsMouseButtonDown(MouseButton.Right) &&
+            Utils.Distance(position, Raylib.GetMousePosition()) <= radius)
+        {
+            Blank newBlank = new Blank(position);
+            GameState.blanks.Add(newBlank);
+            GameState.money += price / 3;
+            alive = false;
+        }
     }
 
-    public void Draw()
+    public virtual void Draw()
     {
         Raylib.DrawCircle((int)position.X, (int)position.Y, 10, new Color(redAspect, 0, 255-redAspect, 255));
         Raylib.DrawCircleLines((int)position.X, (int)position.Y, radius, Color.Green);

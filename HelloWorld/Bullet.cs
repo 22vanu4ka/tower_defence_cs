@@ -9,6 +9,9 @@ public class Bullet
     public Vector2 position;
     public Vector2 velocity;
     public int speed = 8;
+    public int damage = 1;
+    public bool visible = true;
+    public bool pierce = false;
 
     public Bullet(Vector2 position, Vector2 velocity)
     {

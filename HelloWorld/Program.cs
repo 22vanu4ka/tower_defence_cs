@@ -10,7 +10,7 @@ class Program
     {
         const double deltaTime = 1 / 60.0;
         double[] passiveMoneyTimer = new double[2] {1, 1};
-        double[] enemyTimer = new double[2] {5, 5};
+        double[] enemyTimer = new double[2] {1, 1};
         
         Vector2[] p =
         {
@@ -22,11 +22,12 @@ class Program
         GameState.foes.Add(new Enemy(Vector2.Zero, p));
         //GameState.turrets.Add(new Turret(new Vector2(120, 120)));
         //GameState.turrets.Add(new Turret(new Vector2(520, 80)));
+        //GameState.turrets.Add(new DoubleTurret(new Vector2(120, 120)));
         GameState.blanks.Add(new Blank(new Vector2(470, 480)));
         GameState.blanks.Add(new Blank(new Vector2(520, 80)));
         GameState.blanks.Add(new Blank(new Vector2(120, 120)));
         GameState.blanks.Add(new Blank(new Vector2(280, 120)));
-        GameState.blanks.Add(new Blank(new Vector2(320, 100)));
+        
         
         Raylib.SetTargetFPS(60);
         Raylib.InitWindow(800, 600, "Hello World");
@@ -62,6 +63,11 @@ class Program
             foreach (Turret t in GameState.turrets)
             {
                 t.Update(deltaTime);
+                if (!t.alive)
+                {
+                    GameState.turrets.Remove(t);
+                    break;
+                }
             }
 
             foreach (Enemy e in GameState.foes)
@@ -106,7 +112,7 @@ class Program
             
             foreach (Bullet b in GameState.bullets)
             {
-                b.Draw();
+                if (b.visible) b.Draw();
             }
 
             foreach (Blank b in GameState.blanks)

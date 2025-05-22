@@ -8,8 +8,8 @@ namespace HelloWorld;
 public class Enemy
 {
     public Vector2 position;
-    public int hp = 9;
-    public int reward = 20;
+    public int hp = 11;
+    public int reward = 13;
     
     private float speed = 2;
     private Vector2[] path;
@@ -36,9 +36,13 @@ public class Enemy
         {
             if (Utils.Distance(position, bullet.position) < 10.0f)
             {
-                GameState.bullets.Remove(bullet);
-                hp -= 1;
-                break;
+                hp -= bullet.damage;
+                if (!bullet.pierce)
+                {
+                    GameState.bullets.Remove(bullet);
+                    break;
+                }
+
             }
         }
     }
