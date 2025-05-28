@@ -8,23 +8,33 @@ namespace HelloWorld;
 public class Turret
 {
     public virtual string name => "Turret";
-    public virtual int price => 75;
+    public virtual int price => 50;
     public virtual float radius => 100.0f;
     public virtual bool bulletVsibility => true;
     public virtual bool bulletPiercing => false;
     public virtual int damage => 2;
+    public virtual double coolDown => 0.3;
     
     protected Vector2 position;
     public bool alive = true;
-    protected double[] timer = new double[2] {0.3, 0.3};
+    protected double[] timer = new double[2];
     protected Enemy target = null;
+    protected Vector2 targetPos = Vector2.Zero;
     
     protected int redAspect = 0;
+    public virtual float rotateSpeed => 0.1f;
+    protected float elapsed = 0.0f;
     
 
     public Turret(Vector2 position)
     {
         this.position = position;
+        timer[0] = timer[1] = coolDown;
+    }
+
+    public virtual void Shoot()
+    {
+        
     }
 
     public virtual void Update(double delta)
@@ -37,20 +47,29 @@ public class Turret
         foreach (Enemy e in GameState.foes)
         {
             if (e.hp <= 0) continue;
-
+            
             float dist = Utils.Distance(position, e.position);
             if (dist <= radius && dist <= closestDistance)
             {
                 closestDistance = dist;
                 closestEnemy = e;
+                elapsed = 0.0f;
             }
         }
 
         target = closestEnemy;
+
+        if (closestEnemy != null)
+        {
+            elapsed += (float)delta;
+            float t = Math.Clamp(elapsed / rotateSpeed, 0, 1);
+            targetPos = Utils.LerpV(targetPos, closestEnemy.position, t);
+        }
+
     
         if (target != null && timer[0] <= 0)
         {
-            Vector2 tVector = Utils.DirectionTo(position, target.position);
+            Vector2 tVector = Utils.DirectionTo(position, targetPos);
             Bullet newBullet = new Bullet(position, tVector);
             newBullet.visible = bulletVsibility;
             newBullet.pierce = bulletPiercing;
@@ -76,7 +95,7 @@ public class Turret
 
         if (target != null)
         {
-            Raylib.DrawLine((int)position.X, (int)position.Y, (int)target.position.X, (int)target.position.Y, Color.Red);
+            Raylib.DrawLine((int)position.X, (int)position.Y, (int)targetPos.X, (int)targetPos.Y, Color.Red);
             redAspect = Math.Min(255, redAspect + 10);
         }
         else

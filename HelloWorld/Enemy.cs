@@ -8,10 +8,12 @@ namespace HelloWorld;
 public class Enemy
 {
     public Vector2 position;
-    public int hp = 11;
-    public int reward = 13;
-    
-    private float speed = 2;
+
+    public virtual int hp { get; set; } = 11;
+    public virtual int reward => 13;
+    public virtual int radius => 14;
+
+    public virtual float speed => 1.5f;
     private Vector2[] path;
     public int currentIdx = 0;
     private Vector2 target;
@@ -34,7 +36,7 @@ public class Enemy
 
         foreach (Bullet bullet in GameState.bullets)
         {
-            if (Utils.Distance(position, bullet.position) < 10.0f)
+            if (Utils.Distance(position, bullet.position) < radius + 5.0f)
             {
                 hp -= bullet.damage;
                 if (!bullet.pierce)
@@ -47,7 +49,7 @@ public class Enemy
         }
     }
 
-    public void Draw()
+    public virtual void Draw()
     {
         Raylib.DrawCircle((int)position.X, (int)position.Y, 14, Color.Beige);
         Raylib.DrawText($"{hp}", (int)position.X - 10, (int)position.Y - 10, 15, Color.Black);
@@ -68,7 +70,7 @@ public class Enemy
             position.Y -= 2;
             alpha = Math.Max(0, alpha - 10);
             
-            Raylib.DrawText("+20$", (int)position.X, (int)position.Y, 12, new Color(0, 0, 0, alpha));
+            Raylib.DrawText("+$", (int)position.X, (int)position.Y, 12, new Color(0, 0, 0, alpha));
         }
 
     }

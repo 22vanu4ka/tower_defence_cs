@@ -47,18 +47,7 @@ public class DoubleTurret : Turret
 
     public override void Draw()
     {
-        Raylib.DrawCircle((int)position.X, (int)position.Y, 10, new Color(redAspect, 255-redAspect / 2, 255-redAspect / 2, 255));
-        Raylib.DrawCircleLines((int)position.X, (int)position.Y, radius, Color.Green);
-
-        if (target != null)
-        {
-            Raylib.DrawLine((int)position.X, (int)position.Y, (int)target.position.X, (int)target.position.Y, Color.Red);
-            redAspect = Math.Min(255, redAspect + 10);
-        }
-        else
-        {
-            redAspect = Math.Max(0, redAspect - 10);
-        }
+        base.Draw();
         
         if (secondTarget != null)
         {

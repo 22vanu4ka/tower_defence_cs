@@ -21,4 +21,9 @@ public static class Utils
         float dy = b.Y - a.Y;
         return MathF.Sqrt(dx * dx + dy * dy);
     }
+
+    public static Vector2 LerpV(Vector2 start, Vector2 end, float t)
+    {
+        return start + (end - start) * t;
+    }
 }

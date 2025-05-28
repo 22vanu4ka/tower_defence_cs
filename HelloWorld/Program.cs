@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using HelloWorld.Foes;
 using Raylib_cs;
 
 namespace HelloWorld;
@@ -14,19 +15,22 @@ class Program
         
         Vector2[] p =
         {
-            new Vector2(100, 100), 
-            new Vector2(500, 100), 
-            new Vector2(500, 500),
+            new Vector2(70, 300), 
+            new Vector2(200, 300), 
+            new Vector2(200, 500),
+            new Vector2(650, 500),
+            new Vector2(400, 300),
+            new Vector2(650, 300)
         };
         
         GameState.foes.Add(new Enemy(Vector2.Zero, p));
         //GameState.turrets.Add(new Turret(new Vector2(120, 120)));
         //GameState.turrets.Add(new Turret(new Vector2(520, 80)));
         //GameState.turrets.Add(new DoubleTurret(new Vector2(120, 120)));
-        GameState.blanks.Add(new Blank(new Vector2(470, 480)));
-        GameState.blanks.Add(new Blank(new Vector2(520, 80)));
-        GameState.blanks.Add(new Blank(new Vector2(120, 120)));
-        GameState.blanks.Add(new Blank(new Vector2(280, 120)));
+        GameState.blanks.Add(new Blank(new Vector2(135, 279)));
+        GameState.blanks.Add(new Blank(new Vector2(135, 400)));
+        GameState.blanks.Add(new Blank(new Vector2(425, 479)));
+        GameState.blanks.Add(new Blank(new Vector2(670, 300)));
         
         
         Raylib.SetTargetFPS(60);
@@ -34,6 +38,7 @@ class Program
 
         while (!Raylib.WindowShouldClose())
         {
+            //Update
             passiveMoneyTimer[0] -= deltaTime;
             enemyTimer[0] -= deltaTime;
             
@@ -49,7 +54,20 @@ class Program
 
             if (enemyTimer[0] <= 0)
             {
-                Enemy newEnemy = new Enemy(Vector2.Zero, p);
+                Enemy newEnemy = null;
+                if (GameState.foes.Count % 3 == 0)
+                {
+                    newEnemy = new StrongOne(Vector2.Zero, p);
+                }
+                else if (GameState.foes.Count % 4 == 0)
+                {
+                    newEnemy = new FastOne(Vector2.Zero, p);
+                }
+                else
+                {
+                    newEnemy = new Enemy(Vector2.Zero, p);
+                }
+                
                 GameState.foes.Add(newEnemy);
                 enemyTimer[0] = enemyTimer[1];
             }
@@ -89,7 +107,7 @@ class Program
             }
 
 
-            
+            //Draw
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.White);
 

@@ -46,11 +46,12 @@ public class Blank
 
         foreach (Option o in optionBubbles)
         {
-            if (Raylib.IsMouseButtonDown(MouseButton.Left) && Utils.Distance(o.pos, Raylib.GetMousePosition()) < 15 && o.alpha >= 125)
+            if (Raylib.IsMouseButtonDown(MouseButton.Left) && Utils.Distance(o.pos, Raylib.GetMousePosition()) < 15 && o.alpha >= 125 && Convert.ToInt32(o.bottomText) <= GameState.money)
             {
                 Turret newTurret = options[o.optionIdx](position);
                 GameState.turrets.Add(newTurret);
                 alive = false;
+                GameState.money -= Convert.ToInt32(o.bottomText);
             }
         }
         
