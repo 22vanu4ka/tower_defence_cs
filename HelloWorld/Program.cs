@@ -9,21 +9,13 @@ class Program
     
     public static void Main()
     {
+        Raylib.SetTargetFPS(60);
+        Raylib.InitWindow(800, 600, "Hello World");
         const double deltaTime = 1 / 60.0;
         double[] passiveMoneyTimer = new double[2] {1, 1};
         double[] enemyTimer = new double[2] {1, 1};
         
-        Vector2[] p =
-        {
-            new Vector2(70, 300), 
-            new Vector2(200, 300), 
-            new Vector2(200, 500),
-            new Vector2(650, 500),
-            new Vector2(400, 300),
-            new Vector2(650, 300)
-        };
-        
-        GameState.foes.Add(new Enemy(Vector2.Zero, p));
+        GameState.foes.Add(new Enemy(Vector2.Zero, GameState.p));
         //GameState.turrets.Add(new Turret(new Vector2(120, 120)));
         //GameState.turrets.Add(new Turret(new Vector2(520, 80)));
         //GameState.turrets.Add(new DoubleTurret(new Vector2(120, 120)));
@@ -33,8 +25,7 @@ class Program
         GameState.blanks.Add(new Blank(new Vector2(670, 300)));
         
         
-        Raylib.SetTargetFPS(60);
-        Raylib.InitWindow(800, 600, "Hello World");
+        
 
         while (!Raylib.WindowShouldClose())
         {
@@ -57,15 +48,15 @@ class Program
                 Enemy newEnemy = null;
                 if (GameState.foes.Count % 3 == 0)
                 {
-                    newEnemy = new StrongOne(Vector2.Zero, p);
+                    newEnemy = new StrongOne(Vector2.Zero, GameState.p);
                 }
                 else if (GameState.foes.Count % 4 == 0)
                 {
-                    newEnemy = new FastOne(Vector2.Zero, p);
+                    newEnemy = new FastOne(Vector2.Zero, GameState.p);
                 }
                 else
                 {
-                    newEnemy = new Enemy(Vector2.Zero, p);
+                    newEnemy = new Enemy(Vector2.Zero, GameState.p);
                 }
                 
                 GameState.foes.Add(newEnemy);
@@ -91,6 +82,7 @@ class Program
             foreach (Enemy e in GameState.foes)
             {
                 e.Update((float)1 / 60);
+                //12312312312312312312312312
                 if (e.hp <= 0)
                 {
                     Enemy.Info newinfo = new Enemy.Info(e.position);
@@ -105,6 +97,16 @@ class Program
             {
                 b.Update();
             }
+            
+            foreach (Ally e in GameState.allies)
+            {
+                e.Update((float)1 / 60);
+                if (e.hp <= 0)
+                {
+                    GameState.allies.Remove(e);
+                    break;
+                }
+            }
 
 
             //Draw
@@ -113,9 +115,10 @@ class Program
 
             Raylib.DrawText($"{GameState.money}$ + {GameState.passiveMoney}$/sec.", 12, 600-12*2, 20, Color.Black);
 
-            for (int i = 1; i < p.Length; i++)
+            for (int i = 1; i < GameState.p.Length; i++)
             {
-                Raylib.DrawLine((int)p[i].X, (int)p[i].Y, (int)p[i-1].X, (int)p[i-1].Y, Color.Black);
+                
+                Raylib.DrawLine((int)GameState.p[i].X, (int)GameState.p[i].Y, (int)GameState.p[i-1].X, (int)GameState.p[i-1].Y, Color.Black);
             }
             
             foreach (Turret t in GameState.turrets)
@@ -141,6 +144,11 @@ class Program
             foreach (Enemy.Info e in GameState.etc)
             {
                 e.Draw();
+            }
+
+            foreach (Ally a in GameState.allies)
+            {
+                a.Draw();
             }
             
             Raylib.EndDrawing();

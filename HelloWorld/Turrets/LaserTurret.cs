@@ -14,6 +14,7 @@ public class LaserTurret : Turret
     public override double coolDown => 0.9;
     public override float rotateSpeed => 0.0f;
     private double[] secondTimer = new double[2] {0.3, 0.3};
+    public override Texture2D texture => Raylib.LoadTexture("Sprites/laser-turret.png");
 
     private Enemy secondTarget = null;
 

@@ -24,6 +24,9 @@ public class Turret
     protected int redAspect = 0;
     public virtual float rotateSpeed => 0.1f;
     protected float elapsed = 0.0f;
+    //
+    public virtual Texture2D texture => Raylib.LoadTexture("Sprites/turret.png");
+    public virtual int[] textSize => new [] { 32, 32 };
     
 
     public Turret(Vector2 position)
@@ -84,24 +87,36 @@ public class Turret
             Blank newBlank = new Blank(position);
             GameState.blanks.Add(newBlank);
             GameState.money += price / 3;
+            Raylib.UnloadTexture(texture);
             alive = false;
         }
     }
 
     public virtual void Draw()
     {
-        Raylib.DrawCircle((int)position.X, (int)position.Y, 10, new Color(redAspect, 0, 255-redAspect, 255));
+        // Raylib.DrawCircle((int)position.X, (int)position.Y, 10, new Color(redAspect, 0, 255-redAspect, 255));
         Raylib.DrawCircleLines((int)position.X, (int)position.Y, radius, Color.Green);
+        //
+        // if (target != null)
+        // {
+        //     Raylib.DrawLine((int)position.X, (int)position.Y, (int)targetPos.X, (int)targetPos.Y, Color.Red);
+        // }
 
-        if (target != null)
-        {
-            Raylib.DrawLine((int)position.X, (int)position.Y, (int)targetPos.X, (int)targetPos.Y, Color.Red);
-            redAspect = Math.Min(255, redAspect + 10);
-        }
-        else
-        {
-            redAspect = Math.Max(0, redAspect - 10);
-        }
+        //     redAspect = Math.Min(255, redAspect + 10);
+        // }
+        // else
+        // {
+        //     redAspect = Math.Max(0, redAspect - 10);
+        // }
+        Vector2 direction = targetPos - position;
+        float angle = Raylib.RAD2DEG * MathF.Atan2(direction.Y, direction.X);
+
+        Rectangle source = new Rectangle(0, 0, texture.Width, texture.Height);
+        Vector2 origin = new Vector2(textSize[0] / 2, textSize[1] / 2);
+        Vector2 drawPos = position;
+
+        Raylib.DrawTexturePro(texture, source, new Rectangle(drawPos.X, drawPos.Y, textSize[0], textSize[1]), origin, angle, Color.White);
+
         
     }
     

@@ -15,7 +15,8 @@ public class Blank
     {
         pos => new Turret(pos),
         pos => new DoubleTurret(pos),
-        pos => new LaserTurret(pos)
+        pos => new LaserTurret(pos),
+        pos => new Forge(pos)
     };
 
     private Option[] optionBubbles;
@@ -28,7 +29,7 @@ public class Blank
         {
             Turret bubble = options[i](new Vector2(-200, -200));
             int angle = 360 / options.Length;
-            Vector2 bubblePos = new Vector2((int)position.X + 30*MathF.Cos(angle*i*2), (int)position.Y + 30*MathF.Sin(angle*i*2));
+            Vector2 bubblePos = new Vector2((int)position.X + 30*MathF.Cos(angle*i*Raylib.DEG2RAD), (int)position.Y + 30*MathF.Sin(angle*i*Raylib.DEG2RAD));
             Option newOption = new Option(new Vector2(bubblePos.X, bubblePos.Y), bubble.name, i, bubble.price+"");
             optionBubbles[i] = newOption;
         }

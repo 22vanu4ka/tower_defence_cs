@@ -67,25 +67,25 @@
     ]
   },
   "packageFolders": {
-    "/home/sasha/.nuget/packages/": {}
+    "/home/alexb-pc/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/sasha/RiderProjects/tower_defence_cs/HelloWorld/HelloWorld.csproj",
+      "projectUniqueName": "/home/alexb-pc/RiderProjects/HelloWorld/HelloWorld/HelloWorld.csproj",
       "projectName": "HelloWorld",
-      "projectPath": "/home/sasha/RiderProjects/tower_defence_cs/HelloWorld/HelloWorld.csproj",
-      "packagesPath": "/home/sasha/.nuget/packages/",
-      "outputPath": "/home/sasha/RiderProjects/tower_defence_cs/HelloWorld/obj/",
+      "projectPath": "/home/alexb-pc/RiderProjects/HelloWorld/HelloWorld/HelloWorld.csproj",
+      "packagesPath": "/home/alexb-pc/.nuget/packages/",
+      "outputPath": "/home/alexb-pc/RiderProjects/HelloWorld/HelloWorld/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/sasha/.nuget/NuGet/NuGet.Config"
+        "/home/alexb-pc/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "/usr/lib/dotnet/library-packs": {},
+        "/usr/lib64/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -131,7 +131,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.106/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/9.0.106/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

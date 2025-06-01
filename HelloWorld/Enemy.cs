@@ -14,9 +14,9 @@ public class Enemy
     public virtual int radius => 14;
 
     public virtual float speed => 1.5f;
-    private Vector2[] path;
+    protected Vector2[] path;
     public int currentIdx = 0;
-    private Vector2 target;
+    public Vector2 target;
     
     public Enemy(Vector2 position, Vector2[] path)
     {
@@ -24,7 +24,7 @@ public class Enemy
         this.path = path;
     }
 
-    public void Update(float delta)
+    public virtual void Update(float delta)
     {
         target = Utils.DirectionTo(position, path[currentIdx]);
         position += target * speed;
@@ -47,6 +47,7 @@ public class Enemy
 
             }
         }
+        
     }
 
     public virtual void Draw()
